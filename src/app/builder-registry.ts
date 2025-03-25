@@ -36,7 +36,10 @@ import { Component } from '@angular/core';
       useValue: MaterialIconFonts.filled,
     },
   ],
-  template: `<mat-form-field>
+  template: `<mat-form-field
+    [style.margin-top.px]="type === 'textarea' ? 40 : undefined"
+    [style.width]="type === 'textarea' ? '100%' : undefined"
+  >
     <mat-label>{{ labelText }}</mat-label>
     <input
       matInput
@@ -47,7 +50,20 @@ import { Component } from '@angular/core';
       [readonly]="readonly"
       [required]="required"
       [type]="type"
+      [style.display]="type !== 'textarea' ? 'block' : 'none'"
     />
+    <textarea
+      matInput
+      [autocomplete]="autocomplete"
+      [autofocus]="autofocus"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [required]="required"
+      [type]="type"
+      style="height: 140px; width: 100%"
+      [style.display]="type === 'textarea' ? 'block' : 'none'"
+      >{{ value }}</textarea
+    >
   </mat-form-field>`,
 })
 export class MatInput {

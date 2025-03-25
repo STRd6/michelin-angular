@@ -32,6 +32,10 @@ figmaMapping({
         $cmp=${MatInput}
         labelText="${labelText}"
         value=${inputText}
+        type=${
+          //@ts-ignore
+          figma.$rawNode.absoluteBoundingBox.height > 100 ? 'textarea' : 'text'
+        }
       />
     `;
   },
@@ -54,12 +58,14 @@ figmaMapping({
     const styleClass = figma.Style?.toLowerCase() ?? 'filled';
     const stateClass = figma.State?.toLowerCase() ?? 'enabled';
 
-    return html`
-      <my-mat-input
-        $cmp=${MatInput}
-        labelText="${labelText}"
-        value=${inputText}
-      />
-    `;
+    return html` <my-mat-input
+      $cmp=${MatInput}
+      labelText="${labelText}"
+      value=${inputText}
+      type=${
+        //@ts-ignore
+        figma.$rawNode.absoluteBoundingBox.height > 100 ? 'textarea' : 'text'
+      }
+    />`;
   },
 });
